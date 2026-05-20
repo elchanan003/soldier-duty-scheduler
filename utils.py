@@ -1,28 +1,12 @@
 # אחריות: פונקציות עזר שחוזרות על עצמן
 # ============================================================================
+from data import soldiers
 
 def find_soldier_by_id(soldier_id: int) -> dict | None:
-    """
-    מחפשת חייל לפי id ומחזירה אותו.
-
-    סוג: פונקציית עזר (Helper Function)
-
-    מקבלת:
-        soldier_id (int): מספר אישי של החייל
-
-    מחזירה:
-        dict | None: מילון של החייל אם נמצא, None אם לא נמצא
-
-    זורקת: כלום - מחזירה None במקרה שלא נמצא
-
-    למה הפונקציה קיימת:
-    פונקציה זו משמשת הרבה מקומות במערכת (DRY).
-    במקום לחזור על לולאת חיפוש בכל פונקציה,
-    יש פונקציה אחת שעושה את זה.
-    מחזירה None במקום לזרוק exception - מאפשרת גמישות.
-    """
-    pass
-
+    for soldier in soldiers:
+        if soldier.get("id") == soldier_id:
+            return soldier
+    return None
 
 def find_duty_by_name(duties: list, duty_name: str) -> dict | None:
     """
