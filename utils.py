@@ -20,27 +20,8 @@ def is_valid_status(status: str) -> bool:
     return status in valid_status
 
 def is_valid_name(name: str) -> bool:
-    """
-    בודקת אם שם הוא תקין (לא ריק).
+    return len(name.strip()) > 0
 
-    סוג: פונקציית validation (בדיקת תקינות)
-
-    מקבלת:
-        name (str): השם לבדיקה
-
-    מחזירה:
-        bool: True אם השם תקין (לא ריק)
-              False אם ריק
-
-    זורקת: כלום - תמיד מחזירה bool
-
-    למה הפונקציה קיימת:
-    בדיקת תקינות של שם משמשת במספר מקומות.
-    הפרדה של לוגיקת הבדיקה למקום אחד.
-    בעתיד אפשר להוסיף בדיקות נוספות (אורך מינימלי, תווים חוקיים).
-    פונקציות validation מחזירות bool ולא זורקות exceptions.
-    """
-    pass
 
 
 def soldier_has_duty(soldier: dict, duty_name: str) -> bool:
