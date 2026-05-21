@@ -9,26 +9,10 @@ def find_soldier_by_id(soldier_id: int) -> dict | None:
     return None
 
 def find_duty_by_name(duties: list, duty_name: str) -> dict | None:
-    """
-    מחפשת תורנות לפי שם ברשימת תורנויות.
-
-    סוג: פונקציית עזר (Helper Function)
-
-    מקבלת:
-        duties (list): רשימת תורנויות
-        duty_name (str): שם התורנות לחיפוש
-
-    מחזירה:
-        dict | None: מילון של התורנות אם נמצאה, None אם לא נמצאה
-
-    זורקת: כלום - מחזירה None במקרה שלא נמצא
-
-    למה הפונקציה קיימת:
-    פונקציה זו משמשת במספר מקומות (הוספת תורנות, עדכון סטטוס).
-    הפרדה של לוגיקת החיפוש למקום אחד.
-    מחזירה None במקום לזרוק exception - מאפשרת גמישות.
-    """
-    pass
+    for duty in duties:
+        if duty.get("name") == duty_name:
+            return duty
+    return None
 
 
 def is_valid_status(status: str) -> bool:
