@@ -25,27 +25,9 @@ def is_valid_name(name: str) -> bool:
 
 
 def soldier_has_duty(soldier: dict, duty_name: str) -> bool:
-    """
-    בודקת אם לחייל יש תורנות עם שם מסוים.
+    duties = soldier.get("duties")
+    return find_duty_by_name(duties, duty_name) is not None
 
-    סוג: פונקציית validation (בדיקת תקינות)
-
-    מקבלת:
-        soldier (dict): מילון של חייל
-        duty_name (str): שם התורנות לבדיקה
-
-    מחזירה:
-        bool: True אם התורנות קיימת לחייל
-              False אם לא קיימת
-
-    זורקת: כלום - תמיד מחזירה bool
-
-    למה הפונקציה קיימת:
-    בדיקה זו משמשת בהוספת תורנות (למנוע כפילויות).
-    הפרדה של הלוגיקה למקום אחד.
-    פונקציות validation מחזירות bool ולא זורקות exceptions.
-    """
-    pass
 
 
 def is_valid_day(day: str) -> bool:
