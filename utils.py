@@ -1,6 +1,5 @@
-# אחריות: פונקציות עזר שחוזרות על עצמן
-# ============================================================================
 from data import soldiers
+
 
 def find_soldier_by_id(soldier_id: int) -> dict | None:
     for soldier in soldiers:
@@ -14,7 +13,6 @@ def find_duty_by_name(duties: list, duty_name: str) -> dict | None:
             return duty
     return None
 
-
 def is_valid_status(status: str) -> bool:
     valid_status = ["pending", "completed", "missed"]
     return status in valid_status
@@ -22,13 +20,9 @@ def is_valid_status(status: str) -> bool:
 def is_valid_name(name: str) -> bool:
     return len(name.strip()) > 0
 
-
-
 def soldier_has_duty(soldier: dict, duty_name: str) -> bool:
     duties = soldier.get("duties")
     return find_duty_by_name(duties, duty_name) is not None
-
-
 
 def is_valid_day(day: str) -> bool:
     valid_days = ["sunday", "monday", "tuesday", "wednesday", "thursday"]
