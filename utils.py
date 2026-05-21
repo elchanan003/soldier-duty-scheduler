@@ -16,28 +16,8 @@ def find_duty_by_name(duties: list, duty_name: str) -> dict | None:
 
 
 def is_valid_status(status: str) -> bool:
-    """
-    בודקת אם סטטוס הוא חוקי.
-
-    סוג: פונקציית validation (בדיקת תקינות)
-
-    מקבלת:
-        status (str): הסטטוס לבדיקה
-
-    מחזירה:
-        bool: True אם הסטטוס חוקי (pending/completed/missed)
-              False אם לא חוקי
-
-    זורקת: כלום - תמיד מחזירה bool
-
-    למה הפונקציה קיימת:
-    בדיקת תקינות של סטטוס משמשת במספר מקומות.
-    במקום לחזור על הבדיקה, יש פונקציה אחת.
-    גם מקל על שינוי הסטטוסים החוקיים בעתיד.
-    פונקציות validation מחזירות bool ולא זורקות exceptions.
-    """
-    pass
-
+    valid_status = ["pending", "completed", "missed"]
+    return status in valid_status
 
 def is_valid_name(name: str) -> bool:
     """
