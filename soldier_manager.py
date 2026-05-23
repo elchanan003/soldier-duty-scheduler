@@ -1,53 +1,29 @@
-# אחריות: לוגיקה עסקית של ניהול חיילים
-# ============================================================================
+from data import soldiers
+from utils import is_valid_name, find_soldier_by_id
 
 def add_soldier(soldier_id: int, name: str) -> None:
-    """
-    מוסיפה חייל חדש למערכת.
+    if not is_valid_name(name):
+        raise ValueError ("The name entered is invalid")
 
-    סוג: לוגיקה עסקית (Business Logic)
+    if find_soldier_by_id(soldier_id):
+        raise ValueError ('The ID address already exists in the system')
 
-    מקבלת:
-        soldier_id (int): מספר אישי של החייל
-        name (str): שם החייל
+    soldier = {
+        'id'    : soldier_id,
+        'name'  : name,
+        'duties': []
+    }
 
-    מחזירה:
-        None - הפונקציה מוסיפה את החייל או זורקת exception
-
-    זורקת:
-        ValueError: אם id כבר קיים במערכת
-        ValueError: אם name ריק או לא תקין
-
-    למה הפונקציה קיימת:
-    לוגיקה עסקית טהורה של הוספת חייל.
-    מבצעת בדיקות תקינות ומוסיפה את החייל לנתונים.
-    לא מטפלת בקלט/פלט - רק בלוגיקה.
-    זורקת exceptions במקרה של שגיאה במקום להחזיר False.
-    """
-    pass
+    soldiers.append(soldier)
 
 
 def remove_soldier(soldier_id: int) -> None:
-    """
-    מסירה חייל מהמערכת לפי id.
+    soldier = find_soldier_by_id(soldier_id)
 
-    סוג: לוגיקה עסקית (Business Logic)
-
-    מקבלת:
-        soldier_id (int): מספר אישי של החייל
-
-    מחזירה:
-        None - הפונקציה מסירה את החייל או זורקת exception
-
-    זורקת:
-        KeyError: אם חייל עם id זה לא נמצא במערכת
-
-    למה הפונקציה קיימת:
-    לוגיקה עסקית של הסרת חייל.
-    מבצעת בדיקת קיום ומסירה מהנתונים.
-    זורקת exception במקרה שהחייל לא קיים.
-    """
-    pass
+    if not soldier:
+        raise KeyError ("The id address is not in the system")
+    else:
+        soldiers.remove(soldier)
 
 
 def get_all_soldiers() -> list:
