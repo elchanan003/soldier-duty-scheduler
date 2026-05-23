@@ -1,6 +1,7 @@
 from data import soldiers
 from utils import is_valid_name, find_soldier_by_id
 
+
 def add_soldier(soldier_id: int, name: str) -> None:
     if not is_valid_name(name):
         raise ValueError ("The name entered is invalid")
@@ -16,7 +17,6 @@ def add_soldier(soldier_id: int, name: str) -> None:
 
     soldiers.append(soldier)
 
-
 def remove_soldier(soldier_id: int) -> None:
     soldier = find_soldier_by_id(soldier_id)
 
@@ -24,7 +24,6 @@ def remove_soldier(soldier_id: int) -> None:
         raise KeyError ("The id address is not in the system")
     else:
         soldiers.remove(soldier)
-
 
 def get_all_soldiers() -> list:
     return soldiers
