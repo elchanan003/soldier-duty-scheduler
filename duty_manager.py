@@ -1,31 +1,26 @@
-# אחריות: לוגיקה עסקית של ניהול תורנויות
-# ============================================================================
+from data import soldiers
+from utils import find_soldier_by_id, soldier_has_duty, is_valid_day, find_duty_by_name
+
 
 def add_duty_to_soldier(soldier_id: int, duty_name: str, day: str) -> None:
-    """
-    מוסיפה תורנות חדשה לחייל.
+    soldier = find_soldier_by_id(soldier_id)
 
-    סוג: לוגיקה עסקית (Business Logic)
+    if not soldier:
+        raise KeyError ('The id address is not in the system')
+    elif soldier_has_duty(soldier, duty_name):
+        raise ValueError ('A duty with this name already exists for a soldier')
+    elif not is_valid_day(day):
+        raise ValueError ('The day entered is invalid')
+    else:
+        duties = soldier['duties']
+        duty = {
+            'name'   : duty_name,
+            'day'    : day,
+            'status' : 'pending'
+        }
 
-    מקבלת:
-        soldier_id (int): מספר אישי של החייל
-        duty_name (str): שם התורנות
-        day (str): יום בשבוע (sunday/monday/tuesday/wednesday/thursday)
+        duties.append(duty)
 
-    מחזירה:
-        None - הפונקציה מוסיפה את התורנות או זורקת exception
-
-    זורקת:
-        KeyError: אם חייל עם id זה לא נמצא במערכת
-        ValueError: אם תורנות עם שם זה כבר קיימת לחייל
-        ValueError: אם day לא חוקי (friday/saturday או ערך לא תקין)
-
-    למה הפונקציה קיימת:
-    לוגיקה עסקית של הוספת תורנות.
-    מבצעת בדיקות ומוסיפה תורנות לחייל.
-    זורקת exceptions במקרה של שגיאה במקום להחזיר False.
-    """
-    pass
 
 
 def update_duty_status(soldier_id: int, duty_name: str, new_status: str) -> None:
