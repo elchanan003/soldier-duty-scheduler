@@ -1,6 +1,6 @@
 from data import soldiers
 from utils import is_valid_id, is_valid_name
-from soldier_manager import add_soldier, remove_soldier
+from soldier_manager import add_soldier, remove_soldier, get_all_soldiers
 
 def show_menu() -> None:
     menu = """
@@ -73,17 +73,10 @@ def handle_remove_soldier() -> None:
 
 
 def handle_view_soldiers() -> None:
-    """
-    מטפלת בתהליך הצגת כל החיילים.
-    קוראת לפונקציה המתאימה ומציגה את התוצאה.
+    soldiers = get_all_soldiers()
 
-    מקבלת: כלום
-    מחזירה: כלום
-
-    למה הפונקציה קיימת:
-    הפרדה בין קבלת הנתונים לבין הצגתם.
-    """
-    pass
+    for index, soldier in enumerate(soldiers, start=1):
+        print(f"{index}. {soldier.get('name')} - ID: {soldier.get('id')} - {soldier.get('duties')}")
 
 
 def handle_add_duty() -> None:
@@ -97,7 +90,10 @@ def handle_add_duty() -> None:
     למה הפונקציה קיימת:
     הפרדה בין UI לבין לוגיקה עסקית.
     """
-    pass
+   pass
+
+
+
 
 
 def handle_update_duty_status() -> None:
