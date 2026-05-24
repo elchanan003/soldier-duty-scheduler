@@ -1,5 +1,5 @@
 from data import soldiers
-from utils import find_soldier_by_id, soldier_has_duty, is_valid_day, find_duty_by_name
+from utils import find_soldier_by_id, find_duty_by_name, soldier_has_duty, is_valid_day, is_valid_status
 
 
 def add_duty_to_soldier(soldier_id: int, duty_name: str, day: str) -> None:
@@ -24,30 +24,19 @@ def add_duty_to_soldier(soldier_id: int, duty_name: str, day: str) -> None:
 
 
 def update_duty_status(soldier_id: int, duty_name: str, new_status: str) -> None:
-    """
-    מעדכנת את הסטטוס של תורנות.
+    soldier = find_soldier_by_id(soldier_id)
 
-    סוג: לוגיקה עסקית (Business Logic)
+    if not soldier:
+        raise KeyError('The id address is not in the system')
+    if not soldier_has_duty(soldier, duty_name):
+        raise KeyError ('No duty was found in this name')
+    if not is_valid_status(new_status):
+        raise ValueError ('The status entered is incorrect')
 
-    מקבלת:
-        soldier_id (int): מספר אישי של החייל
-        duty_name (str): שם התורנות
-        new_status (str): סטטוס חדש (pending/completed/missed)
+    duties = soldier['duties']
+    duty = find_duty_by_name(duties, duty_name)
 
-    מחזירה:
-        None - הפונקציה מעדכנת את הסטטוס או זורקת exception
-
-    זורקת:
-        KeyError: אם חייל עם id זה לא נמצא במערכת
-        KeyError: אם תורנות עם שם זה לא נמצאה לחייל
-        ValueError: אם new_status לא חוקי (לא pending/completed/missed)
-
-    למה הפונקציה קיימת:
-    לוגיקה עסקית של עדכון סטטוס.
-    מבצעת בדיקות ומעדכנת את הסטטוס.
-    זורקת exceptions במקרה של שגיאה במקום להחזיר False.
-    """
-    pass
+    duty['status'] = new_status
 
 
 def get_soldier_duties(soldier_id: int) -> list:
