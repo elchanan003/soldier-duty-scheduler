@@ -6,7 +6,7 @@ def add_duty_to_soldier(soldier_id: int, duty_name: str, day: str) -> None:
     soldier = find_soldier_by_id(soldier_id)
 
     if not soldier:
-        raise KeyError ('The id address is not in the system')
+        raise KeyError ('The ID address is not in the system')
     elif soldier_has_duty(soldier, duty_name):
         raise ValueError ('A duty with this name already exists for a soldier')
     elif not is_valid_day(day):
@@ -21,13 +21,11 @@ def add_duty_to_soldier(soldier_id: int, duty_name: str, day: str) -> None:
 
         duties.append(duty)
 
-
-
 def update_duty_status(soldier_id: int, duty_name: str, new_status: str) -> None:
     soldier = find_soldier_by_id(soldier_id)
 
     if not soldier:
-        raise KeyError('The id address is not in the system')
+        raise KeyError('The ID address is not in the system')
     if not soldier_has_duty(soldier, duty_name):
         raise KeyError ('No duty was found in this name')
     if not is_valid_status(new_status):
@@ -38,26 +36,10 @@ def update_duty_status(soldier_id: int, duty_name: str, new_status: str) -> None
 
     duty['status'] = new_status
 
-
 def get_soldier_duties(soldier_id: int) -> list:
-    """
-    מחזירה את רשימת התורנויות של חייל.
+    soldier = find_soldier_by_id(soldier_id)
 
-    סוג: גישה לנתונים (Data Access)
+    if not soldier:
+        raise KeyError('The ID address is not in the system')
 
-    מקבלת:
-        soldier_id (int): מספר אישי של החייל
-
-    מחזירה:
-        list: רשימת תורנויות (מילונים)
-              רשימה ריקה אם אין תורנויות
-
-    זורקת:
-        KeyError: אם חייל עם id זה לא נמצא במערכת
-
-    למה הפונקציה קיימת:
-    גישה מבוקרת לתורנויות של חייל.
-    מפרידה בין הנתונים לבין הגישה אליהם.
-    זורקת exception אם החייל לא קיים (במקום להחזיר רשימה ריקה).
-    """
-    pass
+    return soldier['duties']
