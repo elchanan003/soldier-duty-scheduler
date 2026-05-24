@@ -13,16 +13,16 @@ def find_duty_by_name(duties: list, duty_name: str) -> dict | None:
             return duty
     return None
 
+def soldier_has_duty(soldier: dict, duty_name: str) -> bool:
+    duties = soldier.get("duties")
+    return find_duty_by_name(duties, duty_name) is not None
+
 def is_valid_status(status: str) -> bool:
     valid_status = ["pending", "completed", "missed"]
     return status in valid_status
 
 def is_valid_name(name: str) -> bool:
     return len(name.strip()) > 0
-
-def soldier_has_duty(soldier: dict, duty_name: str) -> bool:
-    duties = soldier.get("duties")
-    return find_duty_by_name(duties, duty_name) is not None
 
 def is_valid_day(day: str) -> bool:
     valid_days = ["sunday", "monday", "tuesday", "wednesday", "thursday"]
@@ -60,4 +60,10 @@ def get_day() -> str:
 
     return day
 
+def get_duty_status():
+    status = ''
 
+    while not is_valid_status(status):
+        status =  input('Enter a status: ')
+
+    return status
