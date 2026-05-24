@@ -1,4 +1,6 @@
-
+from data import soldiers
+from utils import is_valid_id, is_valid_name
+from soldier_manager import add_soldier
 
 def show_menu() -> None:
     menu = """
@@ -29,6 +31,7 @@ def show_menu() -> None:
 
     print(menu)
 
+
 def get_user_choice() -> str:
     valid = '0123456'
     choice = ''
@@ -42,19 +45,19 @@ def get_user_choice() -> str:
 
 
 def handle_add_soldier() -> None:
-    """
-    מטפלת בתהליך הוספת חייל חדש.
-    מקבלת קלט מהמשתמש וקוראת לפונקציות המתאימות.
+    new_name = ''
+    while not is_valid_name(new_name):
+        new_name =  input('Enter a name: ')
 
-    מקבלת: כלום
-    מחזירה: כלום
+    new_id = ''
+    while not is_valid_id(new_id):
+        new_id = input('Enter a ID number: ')
 
-    למה הפונקציה קיימת:
-    מפרידה בין הקלט/פלט לבין הלוגיקה העסקית.
-    main.py אחראי על אינטראקציה עם המשתמש,
-    soldier_manager.py אחראי על הלוגיקה.
-    """
-    pass
+    try:
+        add_soldier(int(new_id), new_name)
+    except ValueError as e:
+        print(f'Error: {e}')
+
 
 
 def handle_remove_soldier() -> None:
