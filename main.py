@@ -1,5 +1,4 @@
-from data import soldiers
-from utils import find_soldier_by_id, soldier_has_duty, is_valid_id, is_valid_name, get_id, get_name, get_day, get_duty_status
+from utils import get_id, get_name, get_day, get_duty_status
 from duty_manager import update_duty_status
 from soldier_manager import add_soldier, remove_soldier, get_all_soldiers
 from duty_manager import add_duty_to_soldier, get_soldier_duties
@@ -37,7 +36,7 @@ def show_menu() -> None:
 
 def get_user_choice() -> int:
     valid = '0123456'
-    choice = ''
+    choice = '-1'
 
     while choice not in valid:
         choice = input('Enter your choice: [0-6]')
@@ -114,7 +113,7 @@ def handle_view_soldier_duties() -> None:
 
 
 def main() -> None:
-    choice = int()
+    choice = -1
 
     while choice != 0:
         show_menu()
