@@ -26,7 +26,7 @@ def soldier_has_duty(soldier: dict, duty_name: str) -> bool:
 
 def is_valid_day(day: str) -> bool:
     valid_days = ["sunday", "monday", "tuesday", "wednesday", "thursday"]
-    return day in valid_days
+    return day.lower() in valid_days
 
 def is_valid_id(id_num: str) -> bool:
     id_num = id_num
@@ -52,5 +52,12 @@ def get_name() -> str:
 
     return new_name
 
+def get_day() -> str:
+    day = ''
+
+    while not is_valid_day(day):
+        day =  input('Enter a day: ')
+
+    return day
 
 
