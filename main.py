@@ -1,6 +1,8 @@
 from data import soldiers
-from utils import is_valid_id, is_valid_name
+from utils import is_valid_id, is_valid_name, get_id, get_name, get_day
 from soldier_manager import add_soldier, remove_soldier, get_all_soldiers
+from duty_manager import add_duty_to_soldier
+
 
 def show_menu() -> None:
     menu = """
@@ -45,13 +47,8 @@ def get_user_choice() -> str:
 
 
 def handle_add_soldier() -> None:
-    new_name = ''
-    while not is_valid_name(new_name):
-        new_name =  input('Enter a name: ')
-
-    new_id = ''
-    while not is_valid_id(new_id):
-        new_id = input('Enter a ID number: ')
+    new_name = get_name()
+    new_id = get_id()
 
     try:
         add_soldier(int(new_id), new_name)
@@ -61,9 +58,7 @@ def handle_add_soldier() -> None:
 
 
 def handle_remove_soldier() -> None:
-    new_id = ''
-    while not is_valid_id(new_id):
-        new_id = input('Enter a ID number: ')
+    new_id = get_id()
 
     try:
         remove_soldier(int(new_id))
@@ -80,17 +75,16 @@ def handle_view_soldiers() -> None:
 
 
 def handle_add_duty() -> None:
-    """
-    מטפלת בתהליך הוספת תורנות לחייל.
-    מקבלת קלט מהמשתמש וקוראת לפונקציות המתאימות.
+    soldier_id = get_id()
+    day = get_day()
+    duty = input('Enter a duty: ')
 
-    מקבלת: כלום
-    מחזירה: כלום
+    try:
+        add_duty_to_soldier(soldier_id, duty, day)
+        print('Duty added successfully!')
+    except (ValueError, KeyError) as e:
+        print(f'Error: {e}')
 
-    למה הפונקציה קיימת:
-    הפרדה בין UI לבין לוגיקה עסקית.
-    """
-   pass
 
 
 
