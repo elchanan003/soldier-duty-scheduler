@@ -49,7 +49,7 @@ def get_new_name() -> str:
     new_name = ''
     while not is_valid_name(new_name):
         new_name =  input('Enter a name: ')
-    
+
     return new_name
 
 
