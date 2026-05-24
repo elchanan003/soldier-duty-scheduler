@@ -35,7 +35,7 @@ def show_menu() -> None:
     print(menu)
 
 
-def get_user_choice() -> str:
+def get_user_choice() -> int:
     valid = '0123456'
     choice = ''
 
@@ -44,7 +44,7 @@ def get_user_choice() -> str:
         if choice not in valid:
             print('Invalid choice, please select a number between 0 and 6')
 
-    return choice
+    return int(choice)
 
 
 def handle_add_soldier() -> None:
@@ -114,14 +114,28 @@ def handle_view_soldier_duties() -> None:
 
 
 def main() -> None:
-    """
-    הפונקציה הראשית של התוכנית.
-    מריצה לולאה ראשית שמציגה תפריט, מקבלת בחירה ומפעילה פעולה.
+    choice = int()
 
-    מקבלת: כלום
-    מחזירה: כלום
+    while choice != 0:
+        show_menu()
+        choice = get_user_choice()
 
-    למה הפונקציה קיימת:
-    נקודת הכניסה לתוכנית. מנהלת את הזרימה הראשית.
-    """
-    pass
+        if choice == 1:
+            handle_add_soldier()
+        elif choice == 2:
+            handle_remove_soldier()
+        elif choice == 3:
+            handle_view_soldiers()
+        elif choice == 4:
+            handle_add_duty()
+        elif choice == 5:
+            handle_update_duty_status()
+        elif choice == 6:
+            handle_view_soldier_duties()
+
+    print('Goodbye!')
+    exit()
+
+
+if __name__ == '__main__':
+    main()
