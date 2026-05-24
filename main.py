@@ -1,5 +1,6 @@
 from data import soldiers
-from utils import is_valid_id, is_valid_name, get_id, get_name, get_day
+from utils import is_valid_id, is_valid_name, get_id, get_name, get_day, get_duty_status
+from duty_manager import update_duty_status
 from soldier_manager import add_soldier, remove_soldier, get_all_soldiers
 from duty_manager import add_duty_to_soldier
 
@@ -86,22 +87,16 @@ def handle_add_duty() -> None:
         print(f'Error: {e}')
 
 
-
-
-
-
 def handle_update_duty_status() -> None:
-    """
-    מטפלת בתהליך עדכון סטטוס תורנות.
-    מקבלת קלט מהמשתמש וקוראת לפונקציות המתאימות.
+    soldier_id = get_id()
+    duty = input('Enter a duty: ')
+    duty_status = get_duty_status()
 
-    מקבלת: כלום
-    מחזירה: כלום
-
-    למה הפונקציה קיימת:
-    הפרדה בין UI לבין לוגיקה עסקית.
-    """
-    pass
+    try:
+        update_duty_status(soldier_id, duty, duty_status)
+        print('Duty status updated successfully!')
+    except (ValueError, KeyError) as e:
+        print(f'Error: {e}')
 
 
 def handle_view_soldier_duties() -> None:
