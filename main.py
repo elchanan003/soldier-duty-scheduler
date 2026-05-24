@@ -1,6 +1,6 @@
 from data import soldiers
 from utils import is_valid_id, is_valid_name
-from soldier_manager import add_soldier
+from soldier_manager import add_soldier, remove_soldier
 
 def show_menu() -> None:
     menu = """
@@ -55,23 +55,21 @@ def handle_add_soldier() -> None:
 
     try:
         add_soldier(int(new_id), new_name)
+        print('Soldier added successfully!')
     except ValueError as e:
         print(f'Error: {e}')
 
 
-
 def handle_remove_soldier() -> None:
-    """
-    מטפלת בתהליך הסרת חייל.
-    מקבלת קלט מהמשתמש וקוראת לפונקציות המתאימות.
+    new_id = ''
+    while not is_valid_id(new_id):
+        new_id = input('Enter a ID number: ')
 
-    מקבלת: כלום
-    מחזירה: כלום
-
-    למה הפונקציה קיימת:
-    הפרדה בין UI לבין לוגיקה עסקית.
-    """
-    pass
+    try:
+        remove_soldier(int(new_id))
+        print("Soldier removed successfully")
+    except KeyError as e:
+        print(f'Error: {e}')
 
 
 def handle_view_soldiers() -> None:
