@@ -1,8 +1,8 @@
 from data import soldiers
-from utils import is_valid_id, is_valid_name, get_id, get_name, get_day, get_duty_status
+from utils import find_soldier_by_id, soldier_has_duty, is_valid_id, is_valid_name, get_id, get_name, get_day, get_duty_status
 from duty_manager import update_duty_status
 from soldier_manager import add_soldier, remove_soldier, get_all_soldiers
-from duty_manager import add_duty_to_soldier
+from duty_manager import add_duty_to_soldier, get_soldier_duties
 
 
 def show_menu() -> None:
@@ -100,17 +100,17 @@ def handle_update_duty_status() -> None:
 
 
 def handle_view_soldier_duties() -> None:
-    """
-    מטפלת בתהליך הצגת תורנויות של חייל.
-    מקבלת קלט מהמשתמש וקוראת לפונקציות המתאימות.
+    try:
+        soldier_id = get_id()
+        duties = get_soldier_duties(soldier_id)
+        if not duties:
+            print('No duties assigned to this soldier')
+        else:
+            for index, duty in enumerate(duties, start=1):
+                print(f"{index}. {duty.get('name')} - Day: {duty.get('day')} #{duty.get('status')}")
 
-    מקבלת: כלום
-    מחזירה: כלום
-
-    למה הפונקציה קיימת:
-    הפרדה בין UI לבין לוגיקה עסקית.
-    """
-    pass
+    except KeyError as e:
+        print(f'Error: {e}')
 
 
 def main() -> None:
