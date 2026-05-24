@@ -28,3 +28,17 @@ def is_valid_day(day: str) -> bool:
     valid_days = ["sunday", "monday", "tuesday", "wednesday", "thursday"]
     return day in valid_days
 
+def is_valid_id(id_num: int) -> bool:
+    id_num = str(id_num)
+
+    if len(id_num) != 9:
+        return False
+    if not id_num.isdigit():
+        return False
+
+    return True
+
+
+
+
+
