@@ -1,5 +1,4 @@
-# אחריות: תפריט ראשי, קלט מהמשתמש, ניתוב לפונקציות
-# ============================================================================
+
 
 def show_menu() -> None:
     menu = """
@@ -31,17 +30,15 @@ def show_menu() -> None:
     print(menu)
 
 def get_user_choice() -> str:
-    """
-    מקבלת בחירה מהמשתמש.
+    valid = '0123456'
+    choice = ''
 
-    מקבלת: כלום
-    מחזירה: מחרוזת המייצגת את בחירת המשתמש
+    while choice not in valid:
+        choice = input('Enter your choice: [0-6]')
+        if choice not in valid:
+            print('Invalid choice, please select a number between 0 and 6')
 
-    למה הפונקציה קיימת:
-    הפרדת קבלת קלט מהמשתמש מהלוגיקה של עיבוד הבחירה.
-    מאפשר להחליף את שיטת הקלט בעתיד (למשל, GUI).
-    """
-    pass
+    return choice
 
 
 def handle_add_soldier() -> None:
