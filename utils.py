@@ -28,8 +28,8 @@ def is_valid_day(day: str) -> bool:
     valid_days = ["sunday", "monday", "tuesday", "wednesday", "thursday"]
     return day in valid_days
 
-def is_valid_id(id_num: int) -> bool:
-    id_num = str(id_num)
+def is_valid_id(id_num: str) -> bool:
+    id_num = id_num
 
     if len(id_num) != 9:
         return False
