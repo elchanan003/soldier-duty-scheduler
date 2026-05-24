@@ -38,7 +38,19 @@ def is_valid_id(id_num: str) -> bool:
 
     return True
 
+def get_new_id() -> int:
+    new_id = ''
+    while not is_valid_id(new_id):
+        new_id = input('Enter a ID number: ')
 
+    return int(new_id)
+
+def get_new_name() -> str:
+    new_name = ''
+    while not is_valid_name(new_name):
+        new_name =  input('Enter a name: ')
+    
+    return new_name
 
 
 
